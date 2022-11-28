@@ -11,11 +11,15 @@ package quicksort;
  */
 public class Quicksort {
     private int A[];
+    private int tempo = 0; //contagem de tempo de execução
     
     private void troca(int i, int j){
         int temp = A[i];
+        tempo += 1;
         A[i] = A[j];
+        tempo += 1;
         A[j] = temp;
+        tempo += 1;
     }
     
     public Quicksort(int[] A){
@@ -24,14 +28,18 @@ public class Quicksort {
     
     private int particionar(int p, int r){
         int x = A[r];
+        tempo += 1;
         int i = p - 1;
+        tempo += 1;
         for(int j=p;j<r;j++){
             if(A[j] <= x){
                 i++;
+                tempo+=1;
                 troca(i,j);
             }
         }
         troca(i+1,r);
+        tempo += 1;
         return i+1;
     }
     
@@ -52,6 +60,10 @@ public class Quicksort {
         for(int i=0;i<A.length;i++){
             System.out.print(A[i]+" ");
         }
+    }
+
+    public void exibirTempo(){
+        System.out.println("Tempo de execução: "+tempo+"ms");
     }
     
 }
